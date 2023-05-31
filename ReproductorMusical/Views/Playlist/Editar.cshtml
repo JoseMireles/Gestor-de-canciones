@@ -1,0 +1,39 @@
+﻿@model ReproductorMusical.Models.Playlist
+@{
+    ViewData["Title"] = "Editar lista de reproducción";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center">Editar lista de reproducción</h3>
+<form method="post" asp-action="Editar">
+    <!--Importante para editar-->
+    <input type="hidden" asp-for="Playlist_Id" />
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Nombre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-3">
+            <a asp-action="Index">Volver a listas de reproducción</a>
+        </div>
+        <div class="col-5 offset-4">
+            <button type="submit" class="btn btn-primary form-control">Editar lista de reproducción</button>
+            &nbsp;
+        </div>
+    </div>
+</form>

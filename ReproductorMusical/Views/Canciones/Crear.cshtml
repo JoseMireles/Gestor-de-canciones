@@ -1,0 +1,82 @@
+﻿@model ReproductorMusical.ViewModels.CancionPlaylistVM
+@{
+    ViewData["Title"] = "Agregar Canción";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center">Agregar Canción</h3>
+<form method="post" asp-action="Crear">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Cancion.Nombre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Cancion.Nombre" class="form-control" />
+                    <span asp-validation-for="Cancion.Nombre" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Cancion.Autor"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Cancion.Autor" class="form-control" />
+                    <span asp-validation-for="Cancion.Autor" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Cancion.Productor"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Cancion.Productor" class="form-control" />
+                    <span asp-validation-for="Cancion.Productor" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Cancion.Anio">Año</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Cancion.Anio" class="form-control" />
+                    <span asp-validation-for="Cancion.Anio" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <label asp-for="Cancion.Playlist"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(u => u.Cancion.Playlist_Id, Model.ListaPlaylist, "--Listas de reproducción--",
+                    new {@class = "form-control"})
+                    <span asp-validation-for="Cancion.Playlist_Id" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-3">
+            <a asp-action="Index">Volver a lista</a>
+        </div>
+        <div class="col-5 offset-4">
+            <button type="submit" class="btn btn-primary form-control">Crear</button>
+            &nbsp;
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

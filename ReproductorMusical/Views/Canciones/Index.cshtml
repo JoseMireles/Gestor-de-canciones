@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ReproductorMusical.Models.Cancion>
+@{
+    ViewData["Title"] = "Lista de canciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-4">
+        <h3>Lista de canciones</h3>
+    </div>
+    <div class="col-3">
+        <a asp-action="Crear" class="btn btn-primary form-control">Agregar canción</a>
+    </div>
+</div>
+
+
+<div>
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-striped border">
+            <tr>
+                <th>@Html.DisplayNameFor(a => a.Cancion_Id)</th>
+                <th>@Html.DisplayNameFor(a => a.Nombre)</th>
+                <th>@Html.DisplayNameFor(a => a.Autor)</th>
+                <th>@Html.DisplayNameFor(a => a.Productor)</th>
+                <th>@Html.DisplayNameFor(a => a.Anio)</th>
+                <th>@Html.DisplayNameFor(a => a.Playlist)</th>
+                <th></th>
+            </tr>
+            @foreach (var cancion in Model)
+            {
+                <tr>
+                    <td>@cancion.Cancion_Id</td>
+                    <td>@cancion.Nombre</td>
+                    <td>@cancion.Autor</td>
+                    <td>@cancion.Productor</td>
+                    <td>@cancion.Anio</td>
+                    <td>@cancion.Playlist.Nombre</td>
+                    <td>
+                        <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@cancion.Cancion_Id">Editar</a>
+                        <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@cancion.Cancion_Id">Borrar</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No hay canciones</p>
+    }
+</div>
